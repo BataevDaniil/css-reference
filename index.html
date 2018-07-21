@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>css-reference</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="icon" href="favicon.png"/>
+    <meta name="description" content="CSS reference"/>
+    <meta property="og:site_name" content="css-reference"/>
+    <meta property="og:title" content="CSS reference"/>
+    <meta property="og:description" content="css reference"/>
+    <meta property="og:image" content="img/empty.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:alt" content="css-reference"/>
+  </head>
+  <body><ul>
+  <li><a href="#id">#</a></li>
+  <li><a href="#class">.</a></li>
+  <li><a href="#many-selectors">Много параметров для одного элемента</a></li>
+  <li><a href="#space">пробел</a></li>
+  <li><a href="#comma">запятая</a></li>
+  <li><a href="#gt">&gt;</a></li>
+  <li><a href="#plus">+</a></li>
+  <li><a href="#tild">~</a></li>
+  <li><a href="#star">*</a></li>
+  <li><a href="#attribut">[attribut-name]</a></li>
+  <li><a href="#attribut-value">[attribut-name=value]</a></li>
+  <li><a href="#attribut-begin-plus-data">[attribut-name|=value]</a></li>
+  <li><a href="#attribut-begin">[attribut-name^=value]</a></li>
+  <li><a href="#attribut-end">[attribut-name$=value]</a></li>
+  <li><a href="#attribut-substring">[attribut-name*=value]</a></li>
+  <li><a href="#active">:active</a></li>
+  <li><a href="#focus">:focus</a></li>
+  <li><a href="#before">::before</a></li>
+  <li><a href="#after">::after</a></li>
+  <li><a href="#checked">:checked</a></li>
+  <li><a href="#disabled">:disabled</a></li>
+  <li><a href="#empty">:empty</a></li>
+  <li><a href="#not">:not(selector)</a></li>
+  <li><a href="#enabled">:enabled</a></li>
+  <li><a href="#first-child">:first-child</a></li>
+  <li><a href="#last-child">:last-child</a></li>
+</ul>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="id">
+  <h1 class="title">id</h1>
+
+  <style>
+    #id #target {
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор # в html обозначается атрибутом id, должен быть один во всем сайте.
+  Если есть два элемента с одним и тем же id то будут применены стили только к одному
+  который находится ближе к корню дереву.
+
+  <h2 class="example">Пример</h2>
+  <div>
+    <span id="target">target</span>
+    <span>element</span>
+  </div>
+</div>
+
+<hr>
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="class">
+  <h1 class="title">class</h1>
+
+  <style>
+    #class .target {
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор . в html обозначается абтрибутом class и его может быть на одном сайте много.
+
+  <h2 class="example">Пример</h2>
+  <div>
+    <span class="target">target</span>
+    <span>element</span>
+    <span class="target">target</span>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="many-selectors">
+  <h1 class="title">Много параметров для одного элемента</h1>
+
+  <style>
+    #many-selectors span.element.yet-element[data] {
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Перечисляя селекторы сразу друг за другом обязывает иметь все
+  эти опции на элементе
+
+  <h2 class="example">Пример</h2>
+  <div>
+    <span>span</span>
+    <span class="element">element</span>
+    <span class="yet-element">yet element</span>
+    <span class="element yet-element" data>span.element.yet-element</span>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="space">
+  <h1 class="title">Пробел</h1>
+
+  <style>
+    #space .parent .child {
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор ' ' в html определяется вложенностью элементов
+
+  <p>
+    сигнатура: selector, selector [',' &lt;selector &gt;]*
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="parent">
+    <span class="child">target</span>
+    <span>element</span>
+    <span class="child">target</span>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="comma">
+  <h1 class="title">Запятая</h1>
+
+  <style>
+    #comma .one,
+    #comma .two {
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор , перечесляет слекторы к которым будут применены стили.
+
+  <p>
+    сигнатура: selector, selector [',' &lt;selector &gt;]*
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <span class="one">target</span>
+    <span>element</span>
+    <span class="two">target</span>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="gt">
+  <h1 class="title">Стрелка &gt;</h1>
+
+  <style>
+    #gt .container {
+      display: flex;
+    }
+    #gt .container > div{
+      width: 200px;
+      height: 200px;
+      border: 10px solid black;
+    }
+    #gt .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор &gt; выбирает только дочернии элементы (типа selector2) родителя selector1
+  (на один уровень вложенности)
+  <p>
+    сигнатура: selector1 > selector2
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent">
+      target
+      <div class="child">not target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="plus">
+  <h1 class="title">Плюс</h1>
+
+  <style>
+    #plus .container {
+      display: flex;
+    }
+    /*
+    interesting result
+    #plus .container .parent + .parent
+    */
+    #plus .container .after + div {
+      width: 200px;
+      height: 200px;
+      border: 10px solid black;
+    }
+    #plus .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор + выбирает один элемент selector2 следующий сразу за selector1
+  (на одном уровнe вложенности)
+  <p>
+    сигнатура: selector1 + selector2
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent after">
+      not target 'class after'
+      <div class="child">not target</div>
+    </div>
+    <div class="parent target">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent">
+      not target
+      <div class="child">not target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="tild">
+  <h1 class="title">Тильда</h1>
+
+  <style>
+    #tild .container {
+      display: flex;
+    }
+    #tild .container .after ~ div {
+      width: 200px;
+      height: 200px;
+      border: 10px solid black;
+    }
+    #tild .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор ~ выбирает элементы selector2 следующие за selector1
+  (на одном уровнe вложенности)
+  <p>
+    сигнатура: selector1 ~ selector2
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent after">
+      not target 'class after'
+      <div class="child">not target</div>
+    </div>
+    <div class="parent target">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent">
+      target
+      <div class="child">not target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="star">
+  <h1 class="title">Звезда</h1>
+
+  <h2 class="description">Описание</h2>
+  Селектор * выбирает все эелементы кроме псевдо элементов
+  <p>
+    сигнатура: *
+  </p>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="attribut">
+  <h1 class="title">[attribut-name]</h1>
+
+  <style>
+    #attribut div {
+      margin: 2px;
+    }
+    #attribut .container {
+      display: flex;
+    }
+    #attribut .container [data]{
+      width: 200px;
+      height: 200px;
+      border: 10px solid black;
+    }
+    #attribut .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор [attribut-name] выбирает элементы с атрибутом atrribut-name
+  <p>
+    сигнатура: [attribut-name]
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child" data="value-one">target</div>
+    </div>
+    <div class="parent" data="valuesimpletext">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value-two">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value">
+      target
+      <div class="child" data="three-value">target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="attribut-value">
+  <h1 class="title">[attribut-name=value]</h1>
+
+  <style>
+    #attribut-value div {
+      margin: 2px;
+    }
+    #attribut-value .container {
+      display: flex;
+    }
+    #attribut-value .container [data=value]{
+      width: 200px;
+      height: 200px;
+      border: 10px solid black;
+    }
+    #attribut-value .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор [attribut-name=value] выбирает элементы с атрибутом atrribut-name
+  и значением value
+  <p>
+    сигнатура: [attribut-name=value]
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child" data="value-one">not target</div>
+    </div>
+    <div class="parent" data="valuesimpletext">
+      not target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value-two">
+      not target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value">
+      target
+      <div class="child" data="three-value">not target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="attribut-begin-plus-data">
+  <h1 class="title">[attribut-name|=value]</h1>
+
+  <style>
+    #attribut-begin-plus-data div {
+      margin: 2px;
+    }
+    #attribut-begin-plus-data .container {
+      display: flex;
+    }
+    #attribut-begin-plus-data .container [data|=value]{
+      width: 200px;
+      height: 200px;
+      border: 10px solid black;
+    }
+    #attribut-begin-plus-data .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор [attribut-name|=value] выбирает элементы с атрибутом atrribut-name
+  с значением attribut-value или начинающимся с value и после которого знак -
+  <p>
+    сигнатура: [attribut-name|=value]
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child" data="value-one">target</div>
+    </div>
+    <div class="parent" data="valuesimpletext">
+      not target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value-two">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value">
+      target
+      <div class="child" data="three-value">not target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="attribut-begin">
+  <h1 class="title">[attribut-name^=value]</h1>
+
+  <style>
+    #attribut-begin div {
+      margin: 2px;
+    }
+    #attribut-begin .container {
+      display: flex;
+    }
+    #attribut-begin .container [data^=value]{
+      width: 200px;
+      height: 200px;
+      border: 10px solid black !important;
+    }
+    #attribut-begin .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор [attribut-name^=value] выбирает элементы с атрибутом atrribut-name
+  с значением начинающимся с value независимов от того что после него
+  (пусто или есть еще что-то)
+  <p>
+    сигнатура: [attribut-name^=value]
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child" data="value-one">target</div>
+    </div>
+    <div class="parent" data="valuesimpletext">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value-two">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value">
+      target
+      <div class="child" data="three-value">not target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="attribut-end">
+  <h1 class="title">[attribut-name$=value]</h1>
+
+  <style>
+    #attribut-end div {
+      margin: 2px;
+    }
+    #attribut-end .container {
+      display: flex;
+    }
+    #attribut-end .container [data$=value]{
+      width: 200px;
+      height: 200px;
+      border: 10px solid black !important;
+    }
+    #attribut-end .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор [attribut-name$=value] выбирает элементы с атрибутом atrribut-name
+  с значением заканчивающися value независимов от того что перед ним
+  (пусто или есть еще что-то)
+  <p>
+    сигнатура: [attribut-name$=value]
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child" data="one-value">target</div>
+    </div>
+    <div class="parent" data="simpletextvalue">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="two-value">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="value">
+      target
+      <div class="child" data="value-three">not target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="attribut-substring">
+  <h1 class="title">[attribut-name*=value]</h1>
+
+  <style>
+    #attribut-substring div {
+      margin: 2px;
+    }
+    #attribut-substring .container {
+      display: flex;
+    }
+    #attribut-substring .container [data*=value]{
+      width: 200px;
+      height: 200px;
+      border: 10px solid black !important;
+    }
+    #attribut-substring .container .child {
+      width: 100px;
+      height: 100px;
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор [attribut-name*=value] выбирает элементы с атрибутом atrribut-name
+  с значением содержащее подстроку value
+  <p>
+    сигнатура: [attribut-name*=value]
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="parent">
+      not target
+      <div class="child" data="one-value">target</div>
+    </div>
+    <div class="parent" data="simpletextvalue">
+      target
+      <div class="child">not target</div>
+    </div>
+    <div class="parent" data="two-value">
+      target
+      <div class="child" data="simpletextvaluetext">target</div>
+    </div>
+    <div class="parent" data="value">
+      target
+      <div class="child" data="value-three">target</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="active">
+  <h1 class="title">:active</h1>
+
+  <style>
+    #active .container a {
+      font-size: 20px;
+    }
+    #active .container .div {
+      width: 100px;
+      height: 100px;
+      background: purple;
+    }
+    #active .container :active {
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :active подсвечивает элемент когда зажата кнопка мыши
+  <p>
+    сигнатура: :active
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <a href="#active"><span>:active 1</span></a>
+    <a href="#active"><span>:active 2</span></a>
+    <div class="div"></div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="focus">
+  <h1 class="title">:focus</h1>
+
+  <style>
+    #focus .container a {
+      font-size: 20px;
+    }
+    #focus .container .div {
+      width: 100px;
+      height: 100px;
+      background: purple;
+    }
+    #focus .container :focus {
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :focus подсвечивает элемент когда зажата кнопка мыши и если после нажать на таб
+  то будет перемещаться дальше и приминять стили :focus
+  (как видно из примера на div не работает в сравнении с :active)
+  <p>
+    сигнатура: :focus
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <a href="#focus"><span>:focus 1</span></a>
+    <a href="#focus"><span>:focus 2</span></a>
+    <div class="div"></div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="before">
+  <h1 class="title">::before</h1>
+
+  <style>
+    #before .container .div {
+      width: 100px;
+      height: 100px;
+      background: purple;
+      font-size: 40px;
+    }
+    #before .container .div::before {
+      content: '{';
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор ::before вставляет элемент в DOM в самом начале элемента в который вставляется
+  (изменять его можно только в стилях (не через js))
+  <p>
+    сигнатура: ::before
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="div">text</div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="after">
+  <h1 class="title">::after</h1>
+
+  <style>
+    #after .container .div {
+      width: 100px;
+      height: 100px;
+      background: purple;
+      font-size: 40px;
+    }
+    #after .container .div::after{
+      content: '}';
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор ::after вставляет элемент в DOM в самом конце элемента в который вставляется
+  (изменять его можно только в стилях (не через js))
+  <p>
+    сигнатура: ::after
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div class="div">text</div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="checked">
+  <h1 class="title">:checked</h1>
+
+  <style>
+    #checked .container input:checked {
+      opacity: 0.3;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :checked применяется на активном checkbox
+  <p>
+    сигнатура: :checked
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <input type="checkbox" checked>
+    <input type="checkbox">
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="disabled">
+  <h1 class="title">:disabled</h1>
+
+  <style>
+    #disabled .container input:disabled {
+      background: purple;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :checked применяется на активном checkbox
+  <p>
+    сигнатура: :checked
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <input type="text" disabled>
+    <input type="text">
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="empty">
+  <h1 class="title">:empty</h1>
+
+  <style>
+    #empty .container div:empty {
+      height: 20px;
+      background: purple;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :empty применяется на пустов элементе внутри которого нет текста
+  (еще тэги могут быть кроме inline тегов)
+  <p>
+    сигнатура: :empty
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div></div>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, sed?</div>
+    <div><div><div></div></div></div>
+    <div><span></span></div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="not">
+  <h1 class="title">:not(selector)</h1>
+
+  <style>
+    #not .container {
+      display: flex;
+    }
+    #not .container div {
+      background: purple;
+      width: 100px;
+      height: 100px;
+      margin: 0 2px;
+    }
+    #not .container :not(.target){
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :not(selector) на всех элементах кроме selector
+  <p>
+    сигнатура: :not(selector)
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div></div>
+    <div class="target"></div>
+    <div></div>
+    <div class="target"></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="enabled">
+  <h1 class="title">:enabled</h1>
+
+  <style>
+    #enabled .container {
+      display: flex;
+    }
+    #enabled .container input:enabled {
+      background: orange;
+      margin: 0 2px;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :enabled на элементах input которые можно редактировать
+  <p>
+    сигнатура: :enabled
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <input type="text">
+    <input type="text" disabled>
+    <input type="text">
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="first-child">
+  <h1 class="title">:first-child</h1>
+
+  <style>
+    #first-child .container {
+      display: flex;
+    }
+    #first-child .container div {
+      margin: 10px;
+      background: purple;
+    }
+    #first-child .container div > div{
+      background: orange;
+      width: 100px;
+      height: 100px;
+    }
+    #first-child .container div :first-child{
+      border: 10px solid black;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :first-child выбирает первый дочерний элемент (распространяется вниз по дереву)
+  <p>
+    сигнатура: :first-child
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div>
+      parent 1
+      <div>children 1</div>
+      <div>children 2</div>
+      <div>children 3</div>
+    </div>
+    <div>
+      parent 2
+      <div>children 1</div>
+      <div>children 2</div>
+      <div>children 3</div>
+    </div>
+    <div>
+      parent 3
+      <div>children 1</div>
+      <div>children 2</div>
+      <div>children 3</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="last-child">
+  <h1 class="title">:last-child</h1>
+
+  <style>
+    #last-child .container {
+      display: flex;
+    }
+    #last-child .container div {
+      margin: 10px;
+      background: purple;
+    }
+    #last-child .container div > div{
+      background: orange;
+      width: 100px;
+      height: 100px;
+    }
+    #last-child .container div:last-child{
+      border: 10px solid black;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор :last-child выбирает последний дочерний элемент (распространяется вниз по дереву)
+  <p>
+    сигнатура: :last-child
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <div>
+      parent 1
+      <div>children 1</div>
+      <div>children 2</div>
+      <div>children 3</div>
+    </div>
+    <div>
+      parent 2
+      <div>children 1</div>
+      <div>children 2</div>
+      <div>children 3</div>
+    </div>
+    <div>
+      parent 3
+      <div>children 1</div>
+      <div>children 2</div>
+      <div>children 3</div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="first-letter">
+  <h1 class="title">::first-letter</h1>
+
+  <style>
+    #first-letter .container ::first-letter{
+      background: orange;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор ::first-letter выбирает первую букву в родителе независимо от того на сколько
+  глубого вложен текст (кроме inline)
+  <p>
+    сигнатура: ::first-letter
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, similique?</p>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, est.</div>
+    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, quod?</span>
+    <div>
+      <div>вложенный элемент</div>
+      текст после вложенного элемента
+    </div>
+  </div>
+</div>
+
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+<div id="first-line">
+  <h1 class="title">::first-line</h1>
+
+  <style>
+    #first-line .container ::first-line{
+      background: orange;
+    }
+    #first-line .container div {
+      border: 6px solid black;
+      width: 100px;
+    }
+  </style>
+
+  <h2 class="description">Описание</h2>
+  Селектор ::first-line выбирает первую строку в родителе независимо от того на сколько
+  глубого вложен текст (кроме inline)
+  <p>
+    сигнатура: ::first-line
+  </p>
+
+  <h2 class="example">Пример</h2>
+
+  <div class="container">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, similique?</p>
+    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, est.</div>
+    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia, quod?</span>
+    <div>
+      <div>вложенный элемент</div>
+      текст после вложенного элемента
+    </div>
+  </div>
+</div>
+<hr>
+<!--////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
